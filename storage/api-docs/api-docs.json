@@ -1,0 +1,725 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Fudex API Documentation",
+        "description": "This is the API documentation for the Fudex application",
+        "contact": {
+            "email": "support@Fudex.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/provider/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Login as Provider",
+                "operationId": "3d5b49147f84489ff862e5e8cbdcfdcd",
+                "parameters": [
+                    {
+                        "name": "Accept-Language",
+                        "in": "header",
+                        "description": "Language for the response (e.g., en, ar)",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "en"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "provider@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password123"
+                                    },
+                                    "remember_me": {
+                                        "type": "boolean",
+                                        "example": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Login successful"
+                                        },
+                                        "token": {
+                                            "type": "string",
+                                            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                                        },
+                                        "user": {
+                                            "$ref": "#/components/schemas/User"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid credentials",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid credentials"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/hotel/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Login as Hotel",
+                "operationId": "cd87abf7b5f951e04ab74dab602dccb3",
+                "parameters": [
+                    {
+                        "name": "Accept-Language",
+                        "in": "header",
+                        "description": "Language for the response (e.g., en, ar)",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "en"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "hotel@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password123"
+                                    },
+                                    "remember_me": {
+                                        "type": "boolean",
+                                        "example": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Login successful"
+                                        },
+                                        "token": {
+                                            "type": "string",
+                                            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                                        },
+                                        "user": {
+                                            "$ref": "#/components/schemas/User"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid credentials",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Invalid credentials"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/provider/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Register a new Provider",
+                "operationId": "64a5d1cdaa7a54c3055547bdebb8a573",
+                "parameters": [
+                    {
+                        "name": "Accept-Language",
+                        "in": "header",
+                        "description": "Language for the response (e.g., en, ar)",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "en"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Provider Name"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "provider@example.com"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "example": "+123456789"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Provider registration successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Provider registration successful"
+                                        },
+                                        "user": {
+                                            "$ref": "#/components/schemas/User"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/hotel/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Register a new Hotel",
+                "operationId": "6b4d0221f7c1208a27f6ac43380d4079",
+                "parameters": [
+                    {
+                        "name": "Accept-Language",
+                        "in": "header",
+                        "description": "Language for the response (e.g., en, ar)",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "en"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Hotel Name"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "hotel@example.com"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "example": "+123456789"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "password123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Hotel registration successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Hotel registration successful"
+                                        },
+                                        "user": {
+                                            "$ref": "#/components/schemas/User"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/auth/email/verify-email": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Send OTP for email verification",
+                "operationId": "9d804241fed8b4ca234fad1dcbba125c",
+                "parameters": [
+                    {
+                        "name": "Accept-Language",
+                        "in": "header",
+                        "description": "Language for the response (e.g., en, ar)",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "en"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "user@example.com"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OTP sent successfully."
+                    },
+                    "404": {
+                        "description": "Email not found."
+                    }
+                }
+            }
+        },
+        "/api/auth/email/verify-otp": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Verify email using OTP",
+                "operationId": "a6370ff3c0dedcfcb6a6dcbbe6d99c98",
+                "parameters": [
+                    {
+                        "name": "Accept-Language",
+                        "in": "header",
+                        "description": "Language for the response (e.g., en, ar)",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "en"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "user@example.com"
+                                    },
+                                    "otp": {
+                                        "type": "string",
+                                        "example": "123456"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OTP sent successfully."
+                    },
+                    "404": {
+                        "description": "Email not found."
+                    }
+                }
+            }
+        },
+        "/api/faqs": {
+            "get": {
+                "tags": [
+                    "Pages"
+                ],
+                "summary": "Get list of FAQs",
+                "operationId": "1cf6a38b9bfb7aa285a9c5c6657be48c",
+                "parameters": [
+                    {
+                        "name": "Accept-Language",
+                        "in": "header",
+                        "description": "Language for the response (e.g., en, ar)",
+                        "schema": {
+                            "type": "string",
+                            "example": "en"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of FAQs",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "question": {
+                                                "type": "string",
+                                                "example": "What is our return policy?"
+                                            },
+                                            "answer": {
+                                                "type": "string",
+                                                "example": "Our return policy lasts 30 days."
+                                            },
+                                            "type": {
+                                                "type": "string",
+                                                "example": "general"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/pages/{slug}": {
+            "get": {
+                "tags": [
+                    "Pages"
+                ],
+                "summary": "Get a page by slug",
+                "operationId": "01903a60ee823a3b0495a04328839caf",
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "path",
+                        "description": "Slug of the page",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "contact-us"
+                        }
+                    },
+                    {
+                        "name": "Accept-Language",
+                        "in": "header",
+                        "description": "Language for the response (e.g., en, ar)",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "en"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Page details with sections",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Page"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Page not found"
+                    }
+                }
+            }
+        },
+        "/api/settings": {
+            "get": {
+                "tags": [
+                    "Settings"
+                ],
+                "summary": "Get settings by group",
+                "operationId": "a38f04da7ab37cfeb4a087a7ca308ec9",
+                "parameters": [
+                    {
+                        "name": "group",
+                        "in": "query",
+                        "description": "The group to fetch settings for",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "contact"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of settings by group",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Setting"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "User": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "John Doe"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "john.doe@example.com"
+                    },
+                    "type": {
+                        "type": "string",
+                        "example": "provider"
+                    }
+                },
+                "type": "object"
+            },
+            "Page": {
+                "title": "Page",
+                "description": "Page schema",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "slug": {
+                        "type": "string",
+                        "example": "about-us"
+                    },
+                    "image": {
+                        "type": "string",
+                        "example": "/images/about-us.jpg"
+                    },
+                    "translations": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "locale": {
+                                    "type": "string",
+                                    "example": "en"
+                                },
+                                "title": {
+                                    "type": "string",
+                                    "example": "About Us"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "example": "This is about us page."
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "sections": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "type": {
+                                    "type": "string",
+                                    "example": "vision"
+                                },
+                                "image": {
+                                    "type": "string",
+                                    "example": "/images/vision.jpg"
+                                },
+                                "translations": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "locale": {
+                                                "type": "string",
+                                                "example": "en"
+                                            },
+                                            "title": {
+                                                "type": "string",
+                                                "example": "Vision"
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "example": "Our vision is..."
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "Setting": {
+                "title": "Setting",
+                "description": "Setting object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "key": {
+                        "type": "string",
+                        "example": "whatsapp"
+                    },
+                    "value": {
+                        "type": "string",
+                        "example": "+966123456789"
+                    },
+                    "group": {
+                        "type": "string",
+                        "example": "contact"
+                    },
+                    "type": {
+                        "type": "string",
+                        "example": "text"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-01-01T12:00:00Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-01-01T12:00:00Z"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Auth",
+            "description": "Auth"
+        },
+        {
+            "name": "Pages",
+            "description": "Pages"
+        },
+        {
+            "name": "Settings",
+            "description": "Settings"
+        }
+    ]
+}
