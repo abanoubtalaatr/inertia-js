@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\AdvantageWebController;
 use App\Http\Controllers\Banners\BannerController;
@@ -14,14 +15,21 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Notifications\NotificationController as NotificationsController;
 use App\Http\Controllers\NotificationSettingsController;
 use App\Http\Controllers\PageWebController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SpecialistsController;
 use App\Http\Controllers\UsersController;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 use Spatie\GoogleCalendar\Event;
 
-Route::get('/', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+
+
+
+
+// Route::get('/', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('lang/change', [LangController::class, 'change'])->name('changeLang');
@@ -31,6 +39,7 @@ Route::get('lang/change', [LangController::class, 'change'])->name('changeLang')
 Route::middleware(['auth'])->group(function () {
 
     /************************************************************************ */
+
 
     Route::resource('users', UsersController::class);
     Route::post('users/{user}/activate', [UsersController::class, 'activate'])->name('activate');
@@ -170,4 +179,9 @@ Route::get('create-event', function () {
 
     // delete an event
     $event->delete();
+});
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/admin/about-us', [AboutUsController::class, 'edit'])->name('about-us.edit');
+    Route::post('/admin/about-us', [AboutUsController::class, 'update'])->name('about-us.update');
 });

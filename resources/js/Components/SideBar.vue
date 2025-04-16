@@ -9,7 +9,8 @@
             </li>
 
 
-            <li class="nav-item"  v-if="hasPermission('read admins') || hasPermission('read users') || hasPermission('read specialists') || hasPermission('read companies')">
+            <li class="nav-item"
+                v-if="hasPermission('read admins') || hasPermission('read users') || hasPermission('read specialists') || hasPermission('read companies')">
                 <a class="nav-link" data-bs-target="#components-nav-users" data-bs-toggle="collapse" href="#" :class="{
                     collapsed: !isMembersSectionOpen
                 }" @click.prevent="toggleMembersSection">
@@ -48,7 +49,8 @@
             </li>
 
             <!-- Roles Section -->
-            <li class="nav-item" :hasPermission="['read roles', 'read permissions']" v-if="hasPermission('read roles') || hasPermission('read permissions')">
+            <li class="nav-item" :hasPermission="['read roles', 'read permissions']"
+                v-if="hasPermission('read roles') || hasPermission('read permissions')">
                 <a class="nav-link" data-bs-target="#components-nav-roles" data-bs-toggle="collapse" href="#" :class="{
                     collapsed: !isRolesSectionOpen
                 }" @click.prevent="toggleRolesSection">
@@ -130,34 +132,34 @@
                 <ul id="pages-dropdown" class="nav-content collapse" data-bs-parent="#sidebar">
                     <li v-if="hasPermission('read static_pages')">
                         <Link class="nav-link" :href="route('pages.edit', { slug: 'about-us' })" :class="{
-                    collapsed: !$page.url.startsWith(
-                        '/pages/about-us/edit'
-                    ),
-                }">
+                            collapsed: !$page.url.startsWith(
+                                '/pages/about-us/edit'
+                            ),
+                        }">
                         <i class="bi bi-circle"></i>
                         <span>{{ $t("about_us") }}</span>
                         </Link>
                     </li>
                     <li v-if="hasPermission('read static_pages')">
                         <Link class="nav-link" :href="route('pages.edit', { slug: 'privacy-policy' })
-                    " :class="{
-                    collapsed: !$page.url.startsWith(
-                        '/pages/privacy-policy/edit'
-                    ),
-                }">
+                            " :class="{
+                        collapsed: !$page.url.startsWith(
+                            '/pages/privacy-policy/edit'
+                        ),
+                    }">
                         <i class="bi bi-circle"></i>
                         <span>{{ $t("privacy_policy") }}</span>
                         </Link>
                     </li>
                     <li v-if="hasPermission('read static_pages')">
                         <Link class="nav-link" :href="route('pages.edit', {
-                    slug: 'terms-and-conditions',
-                })
-                    " :class="{
-                    collapsed: !$page.url.startsWith(
-                        '/pages/terms-and-conditions/edit'
-                    ),
-                }">
+                            slug: 'terms-and-conditions',
+                        })
+                            " :class="{
+                        collapsed: !$page.url.startsWith(
+                            '/pages/terms-and-conditions/edit'
+                        ),
+                    }">
                         <i class="bi bi-circle"></i>
                         <span>{{ $t("terms_and_conditions") }}</span>
                         </Link>
@@ -165,18 +167,18 @@
 
                     <li v-if="hasPermission('read static_pages')">
                         <Link class="nav-link" :href="route('pages.edit', { slug: 'contact-us' })" :class="{
-                    collapsed: !$page.url.startsWith(
-                        '/pages/contact-us/edit'
-                    ),
-                }">
+                            collapsed: !$page.url.startsWith(
+                                '/pages/contact-us/edit'
+                            ),
+                        }">
                         <i class="bi bi-circle"></i>
                         <span>{{ $t("contact_us") }}</span>
                         </Link>
                     </li>
                     <li v-if="hasPermission('read static_pages')">
                         <Link class="nav-link" :href="route('faqs.index')" :class="{
-                    collapsed: !$page.url.startsWith('/faqs'),
-                }">
+                            collapsed: !$page.url.startsWith('/faqs'),
+                        }">
                         <i class="bi bi-circle"></i>
                         <span>{{ $t("faqs") }}</span>
                         </Link>
@@ -190,6 +192,15 @@
                     :class="{ collapsed: !$page.url.startsWith('/settings') }">
                 <i class="bi bi-gear"></i>
                 <span>{{ $t("settings") }}</span>
+                </Link>
+            </li>
+
+            <!-- reports -->
+            <li class="nav-item">
+                <Link class="nav-link" :href="route('about-us.edit')"
+                    :class="{ collapsed: !$page.url.startsWith('/admin/about-us') }">
+                <i class="bi bi-file-earmark"></i>
+                <span>{{ $t("من نحن") }}</span>
                 </Link>
             </li>
         </ul>
