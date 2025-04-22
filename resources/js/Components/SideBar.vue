@@ -143,10 +143,10 @@
                     <li v-if="hasPermission('read static_pages')">
                         <Link class="nav-link" :href="route('pages.edit', { slug: 'privacy-policy' })
                             " :class="{
-                        collapsed: !$page.url.startsWith(
-                            '/pages/privacy-policy/edit'
-                        ),
-                    }">
+                                collapsed: !$page.url.startsWith(
+                                    '/pages/privacy-policy/edit'
+                                ),
+                            }">
                         <i class="bi bi-circle"></i>
                         <span>{{ $t("privacy_policy") }}</span>
                         </Link>
@@ -156,10 +156,10 @@
                             slug: 'terms-and-conditions',
                         })
                             " :class="{
-                        collapsed: !$page.url.startsWith(
-                            '/pages/terms-and-conditions/edit'
-                        ),
-                    }">
+                                collapsed: !$page.url.startsWith(
+                                    '/pages/terms-and-conditions/edit'
+                                ),
+                            }">
                         <i class="bi bi-circle"></i>
                         <span>{{ $t("terms_and_conditions") }}</span>
                         </Link>
@@ -200,7 +200,7 @@
                 <Link class="nav-link" :href="route('about-us.edit')"
                     :class="{ collapsed: !$page.url.startsWith('/admin/about-us') }">
                 <i class="bi bi-file-earmark"></i>
-                <span>{{ $t("من نحن") }}</span>
+                <span>{{ $t("about_us") }}</span>
                 </Link>
             </li>
         </ul>

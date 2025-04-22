@@ -1,14 +1,14 @@
 <template>
-    <AuthenticatedLayout title="من نحن">
+    <AuthenticatedLayout title="{{ $t('about_us') }}">
         <div class="pagetitle mb-4" dir="rtl">
-            <h1>من نحن</h1>
+            <h1>{{ $t('about_us') }}</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <Link class="nav-link" :href="route('dashboard')">الرئيسية</Link>
+                        <Link class="nav-link" :href="route('dashboard')">{{ $t('Home') }}</Link>
                     </li>
-                    <li class="breadcrumb-item active">من نحن</li>
-                    <li class="breadcrumb-item active">تعديل</li>
+                    <li class="breadcrumb-item active">{{ $t('about_us') }}</li>
+                    <li class="breadcrumb-item active">{{ $t('edit') }}</li>
                 </ol>
             </nav>
         </div>
@@ -21,11 +21,11 @@
                             <form @submit.prevent="submitForm" class="row g-3" enctype="multipart/form-data">
                                 <!-- Images Section -->
                                 <div class="mb-4">
-                                    <h5 class="text-primary mb-3">الصور</h5>
+                                    <h5 class="text-primary mb-3">{{ $t('images') }}</h5>
                                     <div class="row">
                                         <!-- Image 1 -->
                                         <div class="col-md-6 mb-3">
-                                            <el-form-item label="الصورة الأولى *">
+                                            <el-form-item :label="$t('first_image')">
                                                 <div class="image-upload-wrapper">
                                                     <el-upload action="" :auto-upload="false"
                                                         :on-change="(file) => handleFileChange('image1', file)"
@@ -35,7 +35,7 @@
                                                             class="img-thumbnail" width="100%" />
                                                         <div v-else class="upload-placeholder">
                                                             <i class="el-icon-plus"></i>
-                                                            <div>رفع صورة</div>
+                                                            <div>{{ $t('upload_image') }}</div>
                                                         </div>
                                                     </el-upload>
                                                     <el-icon v-if="form.image1Preview || form.image1"
@@ -48,7 +48,7 @@
 
                                         <!-- Image 2 -->
                                         <div class="col-md-6 mb-3">
-                                            <el-form-item label="الصورة الثانية *">
+                                            <el-form-item :label="$t('second_image')">
                                                 <div class="image-upload-wrapper">
                                                     <el-upload action="" :auto-upload="false"
                                                         :on-change="(file) => handleFileChange('image2', file)"
@@ -58,7 +58,7 @@
                                                             class="img-thumbnail" width="100%" />
                                                         <div v-else class="upload-placeholder">
                                                             <i class="el-icon-plus"></i>
-                                                            <div>رفع صورة</div>
+                                                            <div>{{ $t('upload_image') }}</div>
                                                         </div>
                                                     </el-upload>
                                                     <el-icon v-if="form.image2Preview || form.image2"
@@ -73,7 +73,7 @@
 
                                 <!-- Content Items -->
                                 <div class="mb-4">
-                                    <h5 class="text-primary mb-3">عناصر المحتوى *</h5>
+                                    <h5 class="text-primary mb-3">{{ $t('content_items') }} *</h5>
                                     <div class="accordion" id="itemsAccordion">
                                         <div v-for="(item, index) in form.items" :key="index"
                                             class="accordion-item mb-3">
@@ -81,7 +81,7 @@
                                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                                     :data-bs-target="'#collapse' + index" aria-expanded="true"
                                                     :aria-controls="'collapse' + index">
-                                                    عنصر {{ index + 1 }} *
+                                                    {{ $t('item') }} {{ index + 1 }} *
                                                 </button>
                                             </h2>
                                             <div :id="'collapse' + index" class="accordion-collapse collapse"
@@ -91,14 +91,15 @@
                                                     <div class="row">
                                                         <!-- English Fields -->
                                                         <div class="col-md-6 mb-3">
-                                                            <label class="form-label text-secondary">العنوان
-                                                                (إنجليزي)</label>
+                                                            <label class="form-label text-secondary">{{ $t('title') }}
+                                                                ({{ $t('english') }})</label>
                                                             <el-input v-model="item.title_en"
-                                                                placeholder="العنوان (إنجليزي)"></el-input>
+                                                                :placeholder="$t('title') + ' (' + $t('english') + ') '"></el-input>
                                                         </div>
                                                         <div class="col-md-6 mb-3">
-                                                            <label class="form-label text-secondary">الوصف
-                                                                (إنجليزي)</label>
+                                                            <label class="form-label text-secondary">{{
+                                                                $t('description') }}
+                                                                ({{ $t('english') }})</label>
                                                             <div class="editor-wrapper">
                                                                 <Editor v-model="item.description_en"
                                                                     :init="editorConfig" :key="`editor-${index}-en`" />
@@ -107,14 +108,15 @@
 
                                                         <!-- Arabic Fields -->
                                                         <div class="col-md-6 mb-3">
-                                                            <label class="form-label text-secondary">العنوان
-                                                                (عربي)</label>
+                                                            <label class="form-label text-secondary">{{ $t('title') }}
+                                                                ({{ $t('arabic') }})</label>
                                                             <el-input v-model="item.title_ar"
-                                                                placeholder="العنوان (عربي)"></el-input>
+                                                                :placeholder="$t('title') + ' (' + $t('arabic') + ') '"></el-input>
                                                         </div>
                                                         <div class="col-md-6 mb-3">
-                                                            <label class="form-label text-secondary">الوصف
-                                                                (عربي)</label>
+                                                            <label class="form-label text-secondary">{{
+                                                                $t('description') }}
+                                                                ({{ $t('arabic') }})</label>
                                                             <div class="editor-wrapper">
                                                                 <Editor v-model="item.description_ar"
                                                                     :init="editorConfig" :key="`editor-${index}-ar`" />
@@ -123,14 +125,15 @@
 
                                                         <!-- French Fields -->
                                                         <div class="col-md-6 mb-3">
-                                                            <label class="form-label text-secondary">العنوان
-                                                                (فرنسي)</label>
+                                                            <label class="form-label text-secondary">{{ $t('title') }}
+                                                                ({{ $t('french') }})</label>
                                                             <el-input v-model="item.title_fr"
-                                                                placeholder="العنوان (فرنسي)"></el-input>
+                                                                :placeholder="$t('title') + ' (' + $t('french') + ') '"></el-input>
                                                         </div>
                                                         <div class="col-md-6 mb-3">
-                                                            <label class="form-label text-secondary">الوصف
-                                                                (فرنسي)</label>
+                                                            <label class="form-label text-secondary">{{
+                                                                $t('description') }}
+                                                                ({{ $t('french') }})</label>
                                                             <div class="editor-wrapper">
                                                                 <Editor v-model="item.description_fr"
                                                                     :init="editorConfig" :key="`editor-${index}-fr`" />
@@ -139,14 +142,15 @@
 
                                                         <!-- Tagalog (Filipino) Fields -->
                                                         <div class="col-md-6 mb-3">
-                                                            <label class="form-label text-secondary">العنوان
-                                                                (فلبيني)</label>
+                                                            <label class="form-label text-secondary">{{ $t('title') }}
+                                                                ({{ $t('filipino') }})</label>
                                                             <el-input v-model="item.title_tl"
-                                                                placeholder="العنوان (فلبيني)"></el-input>
+                                                                :placeholder="$t('title') + ' (' + $t('filipino') + ') '"></el-input>
                                                         </div>
                                                         <div class="col-md-6 mb-3">
-                                                            <label class="form-label text-secondary">الوصف
-                                                                (فلبيني)</label>
+                                                            <label class="form-label text-secondary">{{
+                                                                $t('description') }}
+                                                                ({{ $t('filipino') }})</label>
                                                             <div class="editor-wrapper">
                                                                 <Editor v-model="item.description_tl"
                                                                     :init="editorConfig" :key="`editor-${index}-tl`" />
@@ -155,14 +159,15 @@
 
                                                         <!-- Urdu Fields -->
                                                         <div class="col-md-6 mb-3">
-                                                            <label class="form-label text-secondary">العنوان
-                                                                (أردو)</label>
+                                                            <label class="form-label text-secondary">{{ $t('title') }}
+                                                                ({{ $t('urdu') }})</label>
                                                             <el-input v-model="item.title_ur"
-                                                                placeholder="العنوان (أردو)"></el-input>
+                                                                :placeholder="$t('title') + ' (' + $t('urdu') + ') '"></el-input>
                                                         </div>
                                                         <div class="col-md-6 mb-3">
-                                                            <label class="form-label text-secondary">الوصف
-                                                                (أردو)</label>
+                                                            <label class="form-label text-secondary">{{
+                                                                $t('description') }}
+                                                                ({{ $t('urdu') }})</label>
                                                             <div class="editor-wrapper">
                                                                 <Editor v-model="item.description_ur"
                                                                     :init="editorConfig" :key="`editor-${index}-ur`" />
@@ -172,7 +177,7 @@
                                                         <div class="col-md-12 text-start">
                                                             <el-button type="danger" @click="removeItem(index)" plain
                                                                 size="small" :icon="Delete">
-                                                                حذف العنصر
+                                                                {{ $t('delete_item') }}
                                                             </el-button>
                                                         </div>
                                                     </div>
@@ -182,7 +187,7 @@
                                     </div>
                                     <div class="mt-3">
                                         <el-button type="primary" @click="addItem" plain :icon="Plus">
-                                            إضافة عنصر
+                                            {{ $t('add_item') }}
                                         </el-button>
                                     </div>
                                 </div>
@@ -190,7 +195,7 @@
                                 <!-- Submit Button -->
                                 <div class="text-center mt-5">
                                     <button type="submit" class="btn btn-primary px-4 py-2" :disabled="show_loader">
-                                        تحديث
+                                        {{ $t('update') }}
                                         <i class="bi bi-save ms-2" v-if="!show_loader"></i>
                                         <span v-if="show_loader" class="spinner-border spinner-border-sm ms-2"
                                             role="status" aria-hidden="true"></span>
@@ -204,7 +209,6 @@
         </section>
     </AuthenticatedLayout>
 </template>
-
 <script setup>
 import { ref, onMounted } from 'vue';
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
